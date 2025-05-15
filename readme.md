@@ -6,7 +6,6 @@ A comprehensive web application built with Laravel framework.
 
 - PHP >= 8.1
 - Composer
-- Node.js & NPM
 - MySQL/MariaDB
 - Git
 
@@ -27,13 +26,7 @@ cd your-repository
 composer install
 ```
 
-### 3. Install JavaScript dependencies
-
-```
-npm install
-```
-
-### 4. Configure environment variables
+### 3. Configure environment variables
 
 ```
 cp .env.example .env
@@ -63,6 +56,27 @@ php artisan migrate
 php artisan db:seed
 ```
 
+### 7. Import THPT 2024 exam results dataset
+
+The application requires the "diem_thi_thpt_2024" dataset. Follow these steps to import it:
+
+1. Download the dataset from GitHub:
+```
+curl -o diem_thi_thpt_2024.csv https://raw.githubusercontent.com/GoldenOwlAsia/webdev-intern-assignment-3/main/dataset/diem_thi_thpt_2024.csv
+```
+
+2. Move the file to the appropriate location (if needed):
+```
+mv diem_thi_thpt_2024.csv storage/app/public/
+```
+
+3. Run the seeder specific to this dataset:
+```
+php artisan db:seed --class=ThptResultsSeeder
+```
+
+Note: Make sure the storage directory is writable by your web server.
+
 ## Running the Application
 
 ### Development server
@@ -74,20 +88,6 @@ php artisan serve
 ```
 
 The application will be accessible at http://localhost:8000
-
-### Compile assets for development
-
-To compile assets in development mode and enable hot-reloading:
-
-```
-npm run dev
-```
-
-### Compile assets for production
-
-```
-npm run build
-```
 
 ## Testing
 
